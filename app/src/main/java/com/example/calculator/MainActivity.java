@@ -21,7 +21,7 @@ import static java.lang.System.exit;
         private TextView resultView;
         private EditText input;
         Button n0,n1,n2,n3,n4,n5,n6,n7,n8,n9,add,sub,mul,div,dot,ac,back,equal,left,right;
-        Button pai,zs,ln,x2,e,sin,cos,tan,gh;
+        Button pai,zs,lg,x2,e,sin,cos,tan,gh;
         OptrStack optrStack = new OptrStack(); //操作符栈
         OpndStack opndStack = new OpndStack(); //操作数栈
 
@@ -62,7 +62,7 @@ import static java.lang.System.exit;
 
             zs = (Button)findViewById(R.id.zs);
             gh = (Button)findViewById(R.id.gh);
-            ln = (Button)findViewById(R.id.ln);
+            lg = (Button)findViewById(R.id.lg);
             x2 = (Button)findViewById(R.id.x2);
             e = (Button)findViewById(R.id.e);
             pai = (Button)findViewById(R.id.pai);
@@ -71,7 +71,7 @@ import static java.lang.System.exit;
             tan = (Button)findViewById(R.id.tan);
             if (zs != null) zs.setOnClickListener(this);
             if (gh != null) gh.setOnClickListener(this);
-            if (ln != null) ln.setOnClickListener(this);
+            if (lg != null) lg.setOnClickListener(this);
             if (x2 != null) x2.setOnClickListener(this);
             if (e != null) e.setOnClickListener(this);
             if (pai != null) pai.setOnClickListener(this);
@@ -97,7 +97,6 @@ import static java.lang.System.exit;
             equal.setOnClickListener(this);
             right.setOnClickListener(this);
             left.setOnClickListener(this);
-            // 横屏的没有back按钮
             if (back != null) back.setOnClickListener(this);
             ac.setOnClickListener(this);
 
@@ -111,43 +110,35 @@ import static java.lang.System.exit;
             switch(v.getId()){
                 case R.id.sin:
                     str = str+'s';
-                    show = str.substring(0,str.length()-1);
-                    input.setText(show+"sin");
+                    input.setText(str);
                     break;
                 case R.id.cos:
                     str = str+'c';
-                    show = str.substring(0,str.length()-1);
-                    input.setText(show+"cos");
+                    input.setText(str);
                     break;
                 case R.id.tan:
                     str = str+'t';
-                    show = str.substring(0,str.length()-1);
-                    input.setText(show+"tan");
+                    input.setText(str);
                     break;
                 case R.id.e:
                     str = str+'e';
-                    show = str.substring(0,str.length()-1);
-                    input.setText(show+"e^x");
+                    input.setText(str);
                     break;
                 case R.id.gh:
-                    str = str+'g';
-                    show = str.substring(0,str.length()-1);
-                    input.setText('√'+show);
+                    str = str+'√';
+                    input.setText(str);
                     break;
                 case R.id.zs:
                     str = str+'z';
-                    show = str.substring(0,str.length()-1);
-                    input.setText(show+"10^x");
+                    input.setText(str);
                     break;
                 case R.id.ln:
                     str = str+'l';
-                    show = str.substring(0,str.length()-1);
-                    input.setText("ln"+show);
+                    input.setText(str);
                     break;
                 case R.id.x2:
-                    str = str+'x';
-                    show = str.substring(0,str.length()-1);
-                    input.setText(show+"x^2");
+                    str = str+'^';
+                    input.setText(str);
                     break;
                 case R.id.pai:
                     str = str+'π';
@@ -255,50 +246,64 @@ import static java.lang.System.exit;
                     flag = false;
                     opndStack.push(sum);
 
-//                    switch (c){
-//                        case 's':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.sin(a/180 * Math_PI));
-//                            break;
-//                        case 'c':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.cos(a/180 * Math_PI));
-//                            break;
-//                        case 't':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.tan(a/180 * Math_PI));
-//                            break;
-//                        case 'e':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.exp(a));
-//                            break;
-//                        case 'g':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.sqrt(a));
-//                            break;
-//                        case 'l':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.log10(a));
-//                            break;
-//                        case 'z':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(Math.pow(10,a));
-//                            break;
-//                        case 'x':
-//                            a = opndStack.peek();
-//                            opndStack.pop();
-//                            opndStack.push(a*a);
-//                            break;
-//                    }
-//                    c = str.charAt(i);
-//                    i++;
+                    switch (c){
+                        case 's':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.sin(a/180 * Math_PI));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case 'c':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.cos(a/180 * Math_PI));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case 't':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.tan(a/180 * Math_PI));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case 'e':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.exp(a));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case '√':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.sqrt(a));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case 'l':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.log10(a));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case 'z':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(Math.pow(10,a));
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                        case '^':
+                            a = opndStack.peek();
+                            opndStack.pop();
+                            opndStack.push(a*a);
+                            c = str.charAt(i);
+                            i++;
+                            break;
+                    }
                 }
 
                 else if ( c == 'π') {
@@ -307,7 +312,7 @@ import static java.lang.System.exit;
                     i++;
                 }
 
-                else if (k) {
+                else if(k){
                     switch (comp(optrStack.peek(), c)) {
                         case '<':
                             optrStack.push(c);  //把字符整型化，然后压入操作符栈
