@@ -6,10 +6,13 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static java.lang.System.exit;
 
@@ -27,11 +30,10 @@ import static java.lang.System.exit;
 
         public int[] ss1 = {3,3,5,5,1,6,0};                           //栈内元素优先级
         public int[] ss2 = {2,2,4,4,6,1,0};                           //栈外元素优先级
-        public String str,show;
+        public String str;
         public double Math_PI=Math.PI;
 
 
-        @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
@@ -132,7 +134,7 @@ import static java.lang.System.exit;
                     str = str+'z';
                     input.setText(str);
                     break;
-                case R.id.ln:
+                case R.id.lg:
                     str = str+'l';
                     input.setText(str);
                     break;
