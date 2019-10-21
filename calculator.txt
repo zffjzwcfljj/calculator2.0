@@ -13,4 +13,6 @@ vertical
 根据物理感应器决定显示方向，它取决于用户如何持有设备
 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 
-用了网格布局，算法是用了优先级的比较
+布局是网格布局
+算法是用了优先级的比较。数据结构课写过c语言和c++的算法，这次用Java写，还是有很多的不同。
+个人觉得除了算法优先级外，其余的不难，但特别繁琐，之后的实验需要更多的布局
